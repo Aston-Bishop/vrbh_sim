@@ -103,6 +103,7 @@ def main_animate():
     simulation_graph.set_sought(G.sought_set)
 
     G.sought_set = G.seeker_set
+
     G.all_sought_set.update(G.seeker_set)
 
     # test if there's an item in the seeker set
@@ -110,20 +111,20 @@ def main_animate():
         if n.am_item:
             # don't want the node to be an item any more
             n.reset()
+            G.collected_items.add(n)
 
             # to be passed into the next search
             single_node_set = {n}
 
-            # seeker set isn't needed anymore
+            # seeker and sought sets aren't needed anymore
             simulation_graph.reset_nodes(G.seeker_set)
             simulation_graph.reset_nodes(G.all_sought_set)
+            # reset the sought sets from
             G.reset_sought_sets()
             simulation_graph.place_robot(n.pos, G.robot_start_position)
 
             # get the next nodes to search from the current position
-            G.seeker_set = simulation_graph.\
-                           get_nodes_not_searched_around_set_of_nodes(single_node_set)
-
+            G.seeker_set = single_node_set
             G.robot_start_position = n.pos
 
     root.after(G.screen_refresh, main_animate)

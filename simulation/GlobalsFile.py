@@ -48,7 +48,6 @@ class Globs:
         # date.
         self.robot_start_position = robot_start_position
 
-
         # Set that will be used to store the seeker objects whilst searching
         # for items
         self.seeker_set = set()
@@ -81,6 +80,10 @@ class Globs:
         # TODO: does it make sense to have multiple items on screen?
 
         self.item_type = item_type
+
+        # this is a set of all the collected items that the robot has picked
+        # up.
+        self.collected_items = set()
 
 
         ###############################################
