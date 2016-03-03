@@ -80,6 +80,7 @@ item_found = set()
 
 robot_node = simulation_graph.get_node_from_tuple(G.robot_start_position)
 placed_items = simulation_graph.generate_items(4, G.robot_start_position)
+
 simulation_graph.create_generated_items(placed_items)
 
 # Add the robot node to the set of initial values
@@ -111,6 +112,7 @@ def main_animate():
         if n.am_item:
             # don't want the node to be an item any more
             n.reset()
+
             G.collected_items.add(n)
 
             # to be passed into the next search
@@ -126,6 +128,11 @@ def main_animate():
             # get the next nodes to search from the current position
             G.seeker_set = single_node_set
             G.robot_start_position = n.pos
+            print("Items collected = {}".format(len(G.collected_items)))
+            print(n.item_data)
+
+            # TODO: Could check that all the items are collected and do "blah"
+            # when they have been
 
     root.after(G.screen_refresh, main_animate)
 

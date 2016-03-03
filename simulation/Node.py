@@ -80,8 +80,6 @@ class Node:
         # TODO: there should be info about the data that's contained in the
         # items here as well
         self.item_data = dict()
-        self.item_data['items'] = dict()
-        self.item_data['value'] = dict()
 
     def display(self):
         """display the vertice on screen"""
@@ -143,7 +141,16 @@ class Node:
         self.am_item = True
         self.set_colour(self.item_colour)
         self.display()
+        # TODO: there should be information stored in the item as well in this case
+        self.item_data['A'] = "test"
 
+
+    def show_item_info(self):
+        """
+        Print out the contents of the item
+        """
+        print("Item : ")
+        print(self.item_data)
 
     def set_seeker(self):
         """Change the node to represent a seeker node given the class variable setting
